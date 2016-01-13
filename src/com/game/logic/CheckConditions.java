@@ -1,61 +1,81 @@
 package com.game.logic;
 
+import java.util.Scanner;
+
 public class CheckConditions {
 
 	private static int player1WinCounter;
 	private static int player2WinCounter;
 	private static int tieCounter;
 	private static int invalidInput;
+	private String INPUT_FOR_ROCK = "R";
+	private String INPUT_FOR_SCISSORS = "S";
+	private String INPUT_FOR_PAPER = "P";
 
 
-	//Input String Check
+	/*Method to capture the input from Player1
+	Returns a String  */
+	public  String captureInput(){
+		String input;//Input  -- "R", "P", or "S" 
+		Scanner scan = new Scanner(System.in);
+		input = scan.next();
+
+		return input;
+	}
+
+
+
+	/*Method to check if the Player Input is valid or not
+	  Takes Player input as parameter
+	  Returns a String */
 	public  String checkInput(String inputString){
 		String message;
-
-
-		if(!inputString.equalsIgnoreCase("R") && !inputString.equalsIgnoreCase("P") && !inputString.equalsIgnoreCase("S")){
+		
+		if(!inputString.equalsIgnoreCase(INPUT_FOR_ROCK) && !inputString.equalsIgnoreCase(INPUT_FOR_PAPER) && !inputString.equalsIgnoreCase(INPUT_FOR_SCISSORS)){
 			System.out.println("Invaild Input ; Enter a valid input");
 			message = "Invalid";
 			invalidInput++;
 		}else
-
 			message = "Valid";
 		return message;
 	}
 
-	//Winner Condition Check
+	
+	/*Method to check winner condition
+	  Takes Player1 and Player2 inputs as parameter
+	*/
 	public  void checkWinnerCondition(String player1,String player2){
 
 		if (player1.equalsIgnoreCase(player2)) {
 			System.out.println("It's a tie!\n"); 
 			tieCounter++;
 		}
-		else if (player1.equalsIgnoreCase("R")) {
-			if (player2.equalsIgnoreCase("S")) {
+		else if (player1.equalsIgnoreCase(INPUT_FOR_ROCK)) {
+			if (player2.equalsIgnoreCase(INPUT_FOR_SCISSORS)) {
 				System.out.println("Rock crushes scissors. You win!!\n");
 				player1WinCounter++;
 			}
-			else if (player2.equalsIgnoreCase("P")) {
+			else if (player2.equalsIgnoreCase(INPUT_FOR_PAPER)) {
 				System.out.println("Paper eats rock. You lose!!\n"); 
 				player2WinCounter++;
 			}
 		}
-		else if (player1.equalsIgnoreCase("P")) {
-			if (player2.equalsIgnoreCase("S")) {
+		else if (player1.equalsIgnoreCase(INPUT_FOR_PAPER)) {
+			if (player2.equalsIgnoreCase(INPUT_FOR_SCISSORS)) {
 				System.out.println("Scissor cuts paper. You lose!!\n"); 
 				player2WinCounter++;
 			}
-			else if (player2.equalsIgnoreCase("R")) {
+			else if (player2.equalsIgnoreCase(INPUT_FOR_ROCK)) {
 				System.out.println("Paper eats rock. You win!!\n"); 
 				player1WinCounter++;
 			}
 		}
-		else if (player1.equalsIgnoreCase("S")) {
-			if (player2.equalsIgnoreCase("P")) {
+		else if (player1.equalsIgnoreCase(INPUT_FOR_SCISSORS)) {
+			if (player2.equalsIgnoreCase(INPUT_FOR_PAPER)) {
 				System.out.println("Scissor cuts paper. You win!!\n"); 
 				player1WinCounter++;
 			}
-			else if (player2.equalsIgnoreCase("R")) {
+			else if (player2.equalsIgnoreCase(INPUT_FOR_ROCK)) {
 				System.out.println("Rock breaks scissors. You lose!!\n"); 
 				player2WinCounter++;
 			}
@@ -66,9 +86,10 @@ public class CheckConditions {
 
 	}
 
-	//Final Winner Check
+	//Final Winner Check with input parameters player1WinCount and player2WinCount
 	public  String checkFinalWinner(int player1Count,int player2Count){
 
+		//default message when player1Count = player2Count
 		String message = "Not Determined since Its a DRAW";
 
 		if(player1Count > player2Count){
@@ -85,7 +106,7 @@ public class CheckConditions {
 		return totalNoGames ;
 	}
 
-	//Final Winner Check
+	//function to display the final results
 	public  void displayOutput(){
 
 		System.out.println("-----------------------------------------------------------------------------------------");
