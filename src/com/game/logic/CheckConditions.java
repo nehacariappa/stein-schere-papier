@@ -1,5 +1,11 @@
 package com.game.logic;
 
+//********************************************************************
+//CheckConditions.java is a class containing the 
+//methods to check the user input,check for the winner 
+//logic and to display the output  to play the game Rock-Scissors-Paper
+//********************************************************************
+
 import java.util.Scanner;
 
 public class CheckConditions {
@@ -8,21 +14,21 @@ public class CheckConditions {
 	private static int player2WinCounter;
 	private static int tieCounter;
 	private static int invalidInput;
-	private String INPUT_FOR_ROCK = "R";
-	private String INPUT_FOR_SCISSORS = "S";
-	private String INPUT_FOR_PAPER = "P";
+	public static final String INPUT_FOR_ROCK = "R";
+	public static final String INPUT_FOR_SCISSORS = "S";
+	public static final String INPUT_FOR_PAPER = "P";
+	private Scanner scan;
 
 
 	/*Method to capture the input from Player1
 	Returns a String  */
 	public  String captureInput(){
 		String input;//Input  -- "R", "P", or "S" 
-		Scanner scan = new Scanner(System.in);
+		scan = new Scanner(System.in);
 		input = scan.next();
 
 		return input;
 	}
-
 
 
 	/*Method to check if the Player Input is valid or not
@@ -30,7 +36,7 @@ public class CheckConditions {
 	  Returns a String */
 	public  String checkInput(String inputString){
 		String message;
-		
+
 		if(!inputString.equalsIgnoreCase(INPUT_FOR_ROCK) && !inputString.equalsIgnoreCase(INPUT_FOR_PAPER) && !inputString.equalsIgnoreCase(INPUT_FOR_SCISSORS)){
 			System.out.println("Invaild Input ; Enter a valid input");
 			message = "Invalid";
@@ -40,10 +46,9 @@ public class CheckConditions {
 		return message;
 	}
 
-	
+
 	/*Method to check winner condition
-	  Takes Player1 and Player2 inputs as parameter
-	*/
+	  Takes Player1 and Player2 inputs as parameter*/
 	public  void checkWinnerCondition(String player1,String player2){
 
 		if (player1.equalsIgnoreCase(player2)) {
@@ -86,7 +91,10 @@ public class CheckConditions {
 
 	}
 
-	//Final Winner Check with input parameters player1WinCount and player2WinCount
+
+	/*Method to check the Final Winner
+	  input parameters player1WinCount and player2WinCount
+	  Returns a String */
 	public  String checkFinalWinner(int player1Count,int player2Count){
 
 		//default message when player1Count = player2Count
@@ -99,14 +107,16 @@ public class CheckConditions {
 		return message;
 	}
 
-
+	/*Method to find the total number of games played
+	  input parameters player1WinCount,player2WinCount and tiecount
+	  Returns an int */
 	public  int totalNumberOfGames(int player1Count,int player2Count,int tieCount){
 
 		int totalNoGames = player1Count + player2Count + tieCount;
 		return totalNoGames ;
 	}
 
-	//function to display the final results
+	/*Method to display the final results */
 	public  void displayOutput(){
 
 		System.out.println("-----------------------------------------------------------------------------------------");
