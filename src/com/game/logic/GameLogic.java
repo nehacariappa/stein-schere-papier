@@ -14,7 +14,7 @@ public class GameLogic
 		String player1;
 		String player2 = "R"; //Player2 has always "R"
 		int numberOfGames=0;
-		int iteration = 3;
+		int iteration = 9; //Game will be played for 100 iterations
 		String message;
 
 		CheckConditions checkconditions = new CheckConditions();
