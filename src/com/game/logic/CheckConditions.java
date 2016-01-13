@@ -22,11 +22,15 @@ public class CheckConditions {
 
 	/*Method to capture the input from Player1
 	Returns a String  */
-	public  String captureInput(){
-		String input;//Input  -- "R", "P", or "S" 
-		scan = new Scanner(System.in);
-		input = scan.next();
-
+	public  String captureInput() throws Exception{
+		String input=INPUT_FOR_ROCK;//Input  -- "R", "P", or "S" 
+		try {
+			scan = new Scanner(System.in);
+			input = scan.next();
+		} catch (Exception e) {
+			System.out.println("Inside the catch block of captureInput method \n");
+			throw new Exception();
+		}
 		return input;
 	}
 
@@ -34,59 +38,69 @@ public class CheckConditions {
 	/*Method to check if the Player Input is valid or not
 	  Takes Player input as parameter
 	  Returns a String */
-	public  String checkInput(String inputString){
-		String message;
+	public  String checkInput(String inputString) {
+		String message = "";
 
-		if(!inputString.equalsIgnoreCase(INPUT_FOR_ROCK) && !inputString.equalsIgnoreCase(INPUT_FOR_PAPER) && !inputString.equalsIgnoreCase(INPUT_FOR_SCISSORS)){
-			System.out.println("Invaild Input ; Enter a valid input");
-			message = "Invalid";
-			invalidInput++;
-		}else
-			message = "Valid";
+		try {
+			if(!inputString.equalsIgnoreCase(INPUT_FOR_ROCK) && !inputString.equalsIgnoreCase(INPUT_FOR_PAPER) && !inputString.equalsIgnoreCase(INPUT_FOR_SCISSORS)){
+				System.out.println("Invaild Input ; Enter a valid input");
+				message = "Invalid";
+				invalidInput++;
+			}else
+				message = "Valid";
+		} catch (Exception e) {
+			System.out.println("Inside the catch block of checkInput method \n");
+			e.printStackTrace();
+		}
 		return message;
 	}
 
 
 	/*Method to check winner condition
 	  Takes Player1 and Player2 inputs as parameter*/
-	public  void checkWinnerCondition(String player1,String player2){
+	public  void checkWinnerCondition(String player1,String player2) throws Exception{
 
-		if (player1.equalsIgnoreCase(player2)) {
-			System.out.println("It's a tie!\n"); 
-			tieCounter++;
-		}
-		else if (player1.equalsIgnoreCase(INPUT_FOR_ROCK)) {
-			if (player2.equalsIgnoreCase(INPUT_FOR_SCISSORS)) {
-				System.out.println("Rock crushes scissors. You win!!\n");
-				player1WinCounter++;
+		try {
+			if (player1.equalsIgnoreCase(player2)) {
+				System.out.println("It's a tie!\n"); 
+				tieCounter++;
 			}
-			else if (player2.equalsIgnoreCase(INPUT_FOR_PAPER)) {
-				System.out.println("Paper eats rock. You lose!!\n"); 
-				player2WinCounter++;
+			else if (player1.equalsIgnoreCase(INPUT_FOR_ROCK)) {
+				if (player2.equalsIgnoreCase(INPUT_FOR_SCISSORS)) {
+					System.out.println("Rock crushes scissors. You win!!\n");
+					player1WinCounter++;
+				}
+				else if (player2.equalsIgnoreCase(INPUT_FOR_PAPER)) {
+					System.out.println("Paper eats rock. You lose!!\n"); 
+					player2WinCounter++;
+				}
 			}
-		}
-		else if (player1.equalsIgnoreCase(INPUT_FOR_PAPER)) {
-			if (player2.equalsIgnoreCase(INPUT_FOR_SCISSORS)) {
-				System.out.println("Scissor cuts paper. You lose!!\n"); 
-				player2WinCounter++;
+			else if (player1.equalsIgnoreCase(INPUT_FOR_PAPER)) {
+				if (player2.equalsIgnoreCase(INPUT_FOR_SCISSORS)) {
+					System.out.println("Scissor cuts paper. You lose!!\n"); 
+					player2WinCounter++;
+				}
+				else if (player2.equalsIgnoreCase(INPUT_FOR_ROCK)) {
+					System.out.println("Paper eats rock. You win!!\n"); 
+					player1WinCounter++;
+				}
 			}
-			else if (player2.equalsIgnoreCase(INPUT_FOR_ROCK)) {
-				System.out.println("Paper eats rock. You win!!\n"); 
-				player1WinCounter++;
+			else if (player1.equalsIgnoreCase(INPUT_FOR_SCISSORS)) {
+				if (player2.equalsIgnoreCase(INPUT_FOR_PAPER)) {
+					System.out.println("Scissor cuts paper. You win!!\n"); 
+					player1WinCounter++;
+				}
+				else if (player2.equalsIgnoreCase(INPUT_FOR_ROCK)) {
+					System.out.println("Rock breaks scissors. You lose!!\n"); 
+					player2WinCounter++;
+				}
 			}
-		}
-		else if (player1.equalsIgnoreCase(INPUT_FOR_SCISSORS)) {
-			if (player2.equalsIgnoreCase(INPUT_FOR_PAPER)) {
-				System.out.println("Scissor cuts paper. You win!!\n"); 
-				player1WinCounter++;
-			}
-			else if (player2.equalsIgnoreCase(INPUT_FOR_ROCK)) {
-				System.out.println("Rock breaks scissors. You lose!!\n"); 
-				player2WinCounter++;
-			}
-		}
-		else
-			System.out.println("Invalid user input.\n"); 
+			else
+				System.out.println("Invalid user input.\n");
+		} catch (Exception e) {
+			System.out.println("Inside the catch block of checkWinnerCondition method \n");
+			throw new Exception();
+		} 
 
 
 	}
