@@ -14,7 +14,7 @@ import com.game.logic.CheckConditions;
 public class TestCheckInput {
 		
 		CheckConditions checkConditions = new CheckConditions();
-		String message = checkConditions.checkInput(checkConditions.INPUT_FOR_PAPER);
+		String message = checkConditions.checkInput(CheckConditions.INPUT_FOR_PAPER);
 		String testMessage = "Valid";
 
 		@Test
