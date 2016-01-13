@@ -1,5 +1,10 @@
 package com.game.junit;
 
+//***********************************************************************************
+//TestNumberOfGames.java is a junit testcase to find the total number of games played
+//***********************************************************************************
+
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
